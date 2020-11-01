@@ -1,13 +1,30 @@
 /*
-МАССИВ ОБЪЕКТОВ ВСЕХ ПОЛЬЗОВАТЕЛЕЙ:
-
-map
-Получи массив имен всех пользователей (свойство name) используя деструктурирующее присваивание для параметра функции ({name}) без пробелов и переносов на новую строку.
+filter
+Получи массив объектов пользователей, отобранный по цвету глаз (свойство eyeColor), используя деструктурирующее присваивание для параметра функции ({eyeColor}) без пробелов и переносов на новую строку.
 
 Используй только перебирающие методы массива которые не изменяют (не мутируют) исходный массив. Т.е. нельзя использовать for, splice, push и т.п. мутирующие методы.
 
+Деструктурирующее присваивание для параметра функции
+PS Деструктурирующее присваивание (ДП):
+
+Объект как параметр без ДП
+const object = {num : 2}
+function getNum (obj) { return obj.num; }
+console.log(getNum(object)) // 2
+ДП
+const object = {num : 2}
+// const num  =  object.num;
+const { num } = object;
+console.log(num) // 2
+Объект как параметр c ДП
+const object = {num : 2}
+//function getNum (obj) { return obj.num; }
+function getNum ({num}) { return num; }
+console.log(getNum(object)) // 2
+
 */
-const users =  [
+
+const users = [
   {
     id: '701b29c3-b35d-4cf1-a5f6-8b12b29a5081',
     name: 'Moore Hensley',
@@ -93,37 +110,22 @@ const users =  [
     age: 39,
   },
 ];
-//---------------------------------------------------
-//---------РЕШЕНИЕ ЧЕРЕЗ ОБЫЧНУЮ ФУНКЦИЮ C ДЕСТРУКТУРИЗАЦИЕЙ-----------
+//---------РЕШЕНИЕ ЧЕРЕЗ ОБЫЧНУЮ ФУНКЦИЮ БЕЗ ДЕСТРУКТУРИРУЮЩЕГО ПРИСВАИВАНИЯ-----------
+// const getUsersWithEyeColor = function (array, color) {
+//     return array.filter(function (arr) {
+//         return arr.eyeColor === color;
+//     });
+// }
+//  console.log(getUsersWithEyeColor(users, 'blue'));
 
-const getUserNames = function (array) {
-    return array.map(function ({name}) { return name;})
-};
+//---------РЕШЕНИЕ ЧЕРЕЗ ОБЫЧНУЮ ФУНКЦИЮ C ДЕСТРУКТУРИРУЮЩИМ ПРИСВАИВАНИЕМ----------
+const getUsersWithEyeColor = function (array, color) {
+    return array.filter(function ({eyeColor}) {
+        return eyeColor === color;
+    });
+}
+ console.log(getUsersWithEyeColor(users, 'blue'));
+//---------РЕШЕНИЕ ЧЕРЕЗ СТРЕЛОЧНУЮ ФУНКЦИЮ -----------
 
-console.log(getUserNames(users));
-
-// -------ФОРМУЛА-----------------
-
-// const object = {num : 2}
-
-// //function getNum (obj) { return obj.num; }
-
-// function getNum ({num}) { return num; }
-// console.log(getNum(object)) // 2
-
-//-------------------------------------------------
-//---------РЕШЕНИЕ ЧЕРЕЗ СТРЕЛОЧНУЮ ФУНКЦИЮ БЕЗ ДЕСТРУКТУРИЗАЦИИ-----------
-
-//const getUserNames = users => users.map(user => user.name);
-// console.log(getUserNames(users));
-
-
-/* [
-  "Moore Hensley",
-  "Sharlene Bush",
-  "Ross Vazquez",
-  "Elma Head",
-  "Carey Barr",
-  "Blackburn Dotson",
-  "Sheree Anthony",
-] */
+// const getUsersWithEyeColor = (array, color) =>  array.filter(arr => arr.eyeColor === color);
+// console.log(getUsersWithEyeColor(users, 'blue'));
